@@ -1,0 +1,42 @@
+
+GET  http://localhost:3000/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1OTg5NDc5MDksImV4cCI6MTU5ODk1MTUwOSwiYXVkIjoiNWY0YTEyNWY3NGE2ZTUxNTU3ZDNhOGVhIiwiaXNzIjoicGFja2FnZS5jb20ifQ.2Jk3RZRCdrr-xlxM1xfkHjJL5i40oSPddSqJuFW2OT0
+###
+
+GET  http://localhost:3000
+
+
+###
+POST http://localhost:3000/authen/refreshToken
+Content-Type: application/json
+
+{
+"refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWRpZW5jZSI6IjVmNGExMjVmNzRhNmU1MTU1N2QzYThlYSIsImlhdCI6MTU5ODk1NzcwNywiZXhwIjoxNTk5MzE3NzA3LCJpc3MiOiJwYWNrYWdlLmNvbSJ9.Mzhc1_4LI5pF_p1qFvh2G0eCa_U4rZH1uI5_DiSajLw"
+}
+
+###
+
+
+POST http://localhost:3000/authen/login
+Content-Type: application/json
+
+{
+    "username":"anhtoan3210",
+    "password":"resfesfssdf"
+}
+
+###
+
+
+POST http://localhost:3000/authen/refreshToken
+Content-Type: application/json
+
+{
+    "refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWRpZW5jZSI6IjVmNGExMjVmNzRhNmU1MTU1N2QzYThlYSIsImlhdCI6MTU5ODcxODE4MywiZXhwIjoxNTk5MDc4MTgzLCJpc3MiOiJwYWNrYWdlLmNvbSJ9.99BpHRkPt-OPEoIXnxPxJeDxXJ9t5G9baAoQLYTJvWc",
+}
+
+
+###
+
+
+POST http://localhost:3000/authen/logout
