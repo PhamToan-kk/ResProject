@@ -63,6 +63,35 @@ module.exports = {
     },
     getFoods:async(req,res)=>{
         const foods = await Foods.find({})
+        // console.log('foods',foods)
         res.send(foods)
-    }
+    },
+    getPageFood :async(req,res)=>{
+        const page = req.query.page
+        const limit = req.query.limit
+
+        console.log(req.query)
+        const foods = await Foods.find({})
+        const startIndex = (page-1)*limit
+        const endIndex = page*limit
+        const result = {
+            foodcount : foods.length
+        }
+        
+        if(endIndex<foods.length ){
+            result.next={
+                page:page+1,
+                limit:limit
+            }
+        }
+        if(startIndex>0)
+        {
+            result.previous={
+                page:page-1,
+                limit:limit
+            }
+        }
+        result.resultFoods =  foods.slice(startIndex,endIndex)
+        res.send(result)
+    },
 }

@@ -6,6 +6,7 @@ router.post('/addFood',FoodsController.addFood)
 router.post('/deleteFood',FoodsController.deleteFood)
 router.post('/updateFood',FoodsController.updateFood)
 router.get('/getFoods',FoodsController.getFoods)
+router.get('/getPageFoods',FoodsController.getPageFood)
 
 
 

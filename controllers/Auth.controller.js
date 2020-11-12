@@ -2,7 +2,7 @@ const model = require('../models/Model')
 const Users = model.User
 const createError = require('http-errors')
 const {
-    authSchema
+    authSchema,loginSchema
 } = require('../helpers/validation_scheme')
 const { signAccessToken ,signRefreshToken,verifyRefreshToken} = require('../helpers/jwt_helper')
 module.exports = {
@@ -33,7 +33,7 @@ module.exports = {
     login: async (req,res,next) => {
 
         try{
-            const data= await authSchema.validateAsync(req.body)
+            const data = await loginSchema.validateAsync(req.body)
             const user = await Users.findOne({
                 username: data.username
             })
@@ -46,7 +46,16 @@ module.exports = {
             const accessToken = await signAccessToken(user.id)
             const refreshToken = await signRefreshToken(user.id)
 
-            res.send({accessToken,refreshToken})
+            res.send(
+                {
+                    "accessToken":accessToken,
+                    "refreshToken":refreshToken,
+                    "username":user.username,
+                    "phone":user.phone,
+                    "role":user.role,
+                    "id":user.id
+                }
+                )
 
         } catch(error){
             if(error.isJoi === true) 
