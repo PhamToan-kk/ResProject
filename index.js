@@ -51,6 +51,9 @@ require('./helpers/init_redis')
 // routes import
 const AuthRoute = require('./routes/Auth.route')
 const FoodRoute = require("./routes/Food.route")
+const OrderRoute = require("./routes/Order.route")
+const OtherInfoRoute = require("./routes/OtherInfor.route")
+
 // socket.io 
 
 io.on('connection', function (socket) {
@@ -94,9 +97,17 @@ app.get('/test',(req,res)=>{
     res.json({name:'toan'})
 })
 
+app.post('/testPost',(req,res)=>{
+    const data = req.body
+    res.json({data})
+})
+
 //app
 app.use('/authen',AuthRoute)
 app.use('/foods',FoodRoute)
+app.use('/orders',OrderRoute)
+app.use('/otherinfor',OtherInfoRoute)
+
 
 
 

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const { stringify } = require('querystring')
 const bcrypt  = require('bcrypt')
+const { Decimal128 } = require('mongodb')
 const Scheme = mongoose.Schema
 
 
@@ -80,7 +81,101 @@ const Foods = mongoose.model('Foods',FoodSheme)
 
 
 
+const OrderSchema = new Scheme({
+    name:{
+        type:Number,
+        require:true,
+    },
+    date:{
+        type:Number,
+        require:true,
+    },
+    month:{
+        type:Number,
+        require:true,
+    },
+    time:{
+        type:String,
+        require:true,
+    },
+    year:{
+        type:Number,
+        require:true,
+    },
+    customername:{
+        type:String,
+        require:true,
+    },
+    customerid:{
+        type:String,
+        require:true,
+    },
+    order:{
+        type:Array,
+        require:true,
+    },
+    shipcost:{
+        type:Number,
+        require:true,
+    },
+    paymenttotal:{
+        type:Number,
+        require:true,
+    },
+    address:{
+        type:String,
+        require:true,
+    },
+    phone:{
+        type:Number,
+        require:true,
+    },
+    isactive:{
+        type:Boolean,
+        require:true,
+    },
+    isfinish:{
+        type:Boolean,
+        require:true,
+    }
+})
+
+const Orders = mongoose.model('Orders',OrderSchema)
+
+
+// const OtherInfoSchema = new Scheme({
+//     shipcost:{
+//         type:String,
+//         require:true,
+//     },
+//     discount:{
+//         type:Number,
+//         require:true,
+//     },
+// })
+
+// const OtherInfos = mongoose.model('OtherInfos',OtherInfoSchema)
+
+const OtherSchema = new Scheme({
+    name:{
+        type:String,
+        require:true,
+    },
+    discount:{
+        type:Decimal128,
+        require:true,
+    },
+    shipprice:{
+        type:Number,
+        require:true,
+    },
+    
+})
+
+const OtherInfos = mongoose.model('OtherInfos',OtherSchema)
 module.exports = {
     User:User,
-    Foods:Foods
+    Foods:Foods,
+    Orders:Orders,
+    OtherInfos:OtherInfos
 }
