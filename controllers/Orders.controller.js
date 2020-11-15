@@ -5,10 +5,7 @@ const moment = require('moment')
 module.exports={
     addOrder: async(req,res,next)=>{
         const {
-            // name,
-            date,
-            month,
-            year,
+      
             customername,
             customerid,
             order,
@@ -16,17 +13,16 @@ module.exports={
             paymenttotal,
             address,
             phone,
-            isactive,
-            isfinish
+            note
         } = req.body
         try{
-        if(!date || !month || !year || !customername || !customerid || !order || !shipcost || !paymenttotal || !address ||!phone || !isactive || !isfinish) throw  createError.BadRequest()
+        if(!customername || !customerid || !order || !shipcost || !paymenttotal || !address ||!phone ) throw  createError.BadRequest()
         
         const newOrder = new Orders({
             name :Date.now(),
-            date,
-            month,
-            year,
+            date: moment().date(),
+            month: moment().month(),
+            year:moment().year(),
             time:moment().format('MMM DD h:mm A'),
             customername,
             customerid,
@@ -35,8 +31,9 @@ module.exports={
             paymenttotal,
             address,
             phone,
-            isactive,
-            isfinish
+            isactive:false,
+            isfinish:false,
+            note
         })
 
         const saveOrder = await newOrder.save()
@@ -110,6 +107,27 @@ module.exports={
             orderCount:orderCount,
             totalOrderMoney:totalOrderMoney
         })
+
+    },
+    getOrderNotActive:async(req,res)=>{
+        const { customerId} = req.query
+        const orders = await Orders.find({
+            isactive:false,
+            customerid:customerId
+        })
+
+        res.send(orders)
+
+    },
+    getOrderActivedNotFinish:async(req,res)=>{
+        const { customerId} = req.query
+        const orders = await Orders.find({
+            isfinish:false,
+            isactive:true,
+            customerid:customerId
+        })
+
+        res.send(orders)
 
     }
 }

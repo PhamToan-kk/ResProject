@@ -12,6 +12,10 @@ router.get('/getListOrders',OrderController.getListOrders)
 
 router.get('/getOrderInfo',OrderController.getOrderInfo)
 
+router.get('/getOrderNotActive',OrderController.getOrderNotActive)
+
+router.get('/getOrderActivedNotFinish',OrderController.getOrderActivedNotFinish)
+
 
 
 module.exports = router

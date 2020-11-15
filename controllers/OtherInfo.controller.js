@@ -1,18 +1,18 @@
 const createError = require('http-errors')
 const model = require('../models/Model')
-const OtherInfos = model.OtherInfos
+const PriceInfos = model.PriceInfos
 
 module.exports={
     addOtherInfor:async(req,res)=>{
         const {
-            discount,
+            discountpercent,
             shipprice,
             name
         } = req.body
 
-        const newinfo = new OtherInfos({
+        const newinfo = new PriceInfos({
             name,
-            discount,
+            discountpercent,
             shipprice
         })
         const saveInfo = newinfo.save()
@@ -20,17 +20,22 @@ module.exports={
     },
     updateOtherInfo:async(req,res)=>{
         const {
-            newDiscount,
+            newDiscountPercent,
             newShipPrice
         } = req.body
 
-        const info = await OtherInfos.updateOne({
+        const info = await PriceInfos.updateOne({
             name:"FoodBet",
         },{
-            discount:newDiscount,
+            discountpercent:newDiscountPercent,
             shipprice:newShipPrice,
         })
 
         res.send(info)
+    },
+    getOtherInfo:async(req,res)=>{
+        const dataOtherInfos = await PriceInfos.find({})
+        // const OtherInfos = dataOtherInfos[0] 
+        res.send(dataOtherInfos[0])
     }
 }

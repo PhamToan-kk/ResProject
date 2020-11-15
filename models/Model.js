@@ -137,45 +137,39 @@ const OrderSchema = new Scheme({
     isfinish:{
         type:Boolean,
         require:true,
+    },
+    note:{
+        type:String,
+        require:true,
     }
 })
 
 const Orders = mongoose.model('Orders',OrderSchema)
 
 
-// const OtherInfoSchema = new Scheme({
-//     shipcost:{
-//         type:String,
-//         require:true,
-//     },
-//     discount:{
-//         type:Number,
-//         require:true,
-//     },
-// })
 
-// const OtherInfos = mongoose.model('OtherInfos',OtherInfoSchema)
 
-const OtherSchema = new Scheme({
+const PriceInfoSchema = new Scheme({
     name:{
         type:String,
         require:true,
+        unique:true
     },
-    discount:{
-        type:Decimal128,
+    discountpercent:{
+        type:Number,
         require:true,
     },
     shipprice:{
         type:Number,
         require:true,
     },
-    
 })
 
-const OtherInfos = mongoose.model('OtherInfos',OtherSchema)
+const PriceInfos = mongoose.model('PriceInfos',PriceInfoSchema)
+
 module.exports = {
     User:User,
     Foods:Foods,
     Orders:Orders,
-    OtherInfos:OtherInfos
+    PriceInfos:PriceInfos,
 }
