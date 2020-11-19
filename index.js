@@ -54,6 +54,7 @@ const FoodRoute = require("./routes/Food.route")
 const OrderRoute = require("./routes/Order.route")
 const OtherInfoRoute = require("./routes/OtherInfor.route")
 
+
 // socket.io 
 
 io.on('connection', function (socket) {
@@ -104,14 +105,11 @@ app.post('/testPost',(req,res)=>{
 
 //app
 app.use('/authen',AuthRoute)
-app.use('/foods',FoodRoute)
-app.use('/orders',OrderRoute)
-app.use('/otherinfor',OtherInfoRoute)
+app.use('/foods',verifyAccessToken,FoodRoute)
+app.use('/orders',verifyAccessToken,OrderRoute)
+app.use('/otherinfor',verifyAccessToken,OtherInfoRoute)
 
-
-
-
-//err
+//response err
 app.use(async (req,res,next)=>{
     next(createError.NotFound()) // err 404 - not found
 

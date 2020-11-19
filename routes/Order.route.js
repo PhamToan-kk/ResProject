@@ -14,6 +14,9 @@ router.get('/getOrderInfo',OrderController.getOrderInfo)
 
 router.get('/getOrderNotActive',OrderController.getOrderNotActive)
 
+router.get('/adminGetOrderNotActive',OrderController.adminGetOrderNotActive)
+
+
 router.get('/getOrderActivedNotFinish',OrderController.getOrderActivedNotFinish)
 
 

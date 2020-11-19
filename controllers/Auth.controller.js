@@ -8,8 +8,6 @@ const { signAccessToken ,signRefreshToken,verifyRefreshToken} = require('../help
 module.exports = {
     register: async (req, res, next) => {
         try {
-            // const {username,password} = req.body
-            // if(!username || !password ) throw createError.BadRequest() // status 400
             const data = await authSchema.validateAsync(req.body)
             const doesExist = await Users.findOne({
                 username: data.username

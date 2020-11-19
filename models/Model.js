@@ -141,6 +141,10 @@ const OrderSchema = new Scheme({
     note:{
         type:String,
         require:true,
+    },
+    feedback:{
+        type:String,
+        require:true,
     }
 })
 
