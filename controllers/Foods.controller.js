@@ -48,15 +48,24 @@ module.exports = {
     },
     updateFood: async (req,res)=>{
         const {
+            _id,
             name,
-            newPrice,
-            newName
+            type,
+            price,
+            url,
+            intro,
+            components
         } = req.body
         const foodUpdated = await Foods.updateOne({
-            name:name,
+            _id:_id,
         },{
-            name:newName,
-            price:newPrice,
+            name:name,
+            type:type,
+            price:price,
+            url:url,
+            intro:intro,
+            components:components
+
         })
         res.send(foodUpdated)
         
