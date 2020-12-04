@@ -4,7 +4,7 @@ const OrderController = require('../controllers/Orders.controller')
 
 router.post('/addOrder',OrderController.addOrder)
 
-router.post('/activeOrder',OrderController.activeOrder)
+router.patch('/activeOrder',OrderController.activeOrder)
 
 router.post('/finishOrder',OrderController.finishOrder)
 

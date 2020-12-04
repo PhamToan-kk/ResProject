@@ -38,10 +38,10 @@ module.exports = {
     },
     deleteFood: async (req,res)=>{
         const {
-            name
+            _id
         } = req.body
         const foodDeleted = await Foods.deleteOne({
-            name:name
+            _id:_id
         })
         res.send(foodDeleted)
 

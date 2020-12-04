@@ -8,6 +8,7 @@ var fileupload = require('express-fileupload')
 //morgan
 const morgan = require('morgan')
 app.use(morgan('dev'))
+
 //file upload 
 app.use(fileupload(
     {useTempFiles:true}
@@ -28,8 +29,6 @@ const createError = require('http-errors')
 require('dotenv').config()
 
 const {verifyAccessToken} = require('./helpers/jwt_helper')
-
-
 
 
 // body parser 
@@ -59,24 +58,16 @@ const OtherInfoRoute = require("./routes/OtherInfor.route")
 
 io.on('connection', function (socket) {
     console.log('có ngưoi ket noi', socket.id)
-    // // socket.on("chat message", msg => {
-    // //     console.log(msg);
-    // //     socket.emit("chat message", "leuleuuuuu");
-    // //   });
-    // socket.emit("chat message", "leuleuuuuu");
-
-
-    socket.on("user send admin", msg => {
+    socket.on("customer_send_order_server", msg => {
         console.log("user send admin",msg);
-        socket.emit("server send admin", msg);
-      });
+        io.emit("server_send_order_admin",'huhuu');
+    });
+    socket.on("admin_send", msg => {
+        console.log("admin_send",msg);   
+        // socket.emit("server_send_order_admin","hahha");
+ 
+    });  
 
-
-
-    socket.on("admin send user", msg => {
-        console.log("admin send user",msg);
-        socket.emit("server send user",msg);
-      });  
 
 })
 
